@@ -10,6 +10,12 @@ import (
 )
 
 func Start() {
+	defer func() {
+		if r := recover(); r != nil {
+			log.Fatalf("[FATAL] Recovered from panic: %v\n", r)
+		}
+	}()
+
 	if len(os.Args) < 2 {
 		log.Fatalf("Usage: %s <command> <args>\n", os.Args[0])
 		return
