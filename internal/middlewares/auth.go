@@ -2,7 +2,6 @@ package middlewares
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"strings"
 	"time"
@@ -55,7 +54,6 @@ func AuthMiddleware() gin.HandlerFunc {
 
 		oauthRepo := dependencies.New().Repository.Oauth
 		tokenData, err := oauthRepo.FindTokenByAccessToken(c.Request.Context(), tokenStr)
-		fmt.Println(tokenData, err)
 		if err != nil {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "token not found or revoked"})
 			return
