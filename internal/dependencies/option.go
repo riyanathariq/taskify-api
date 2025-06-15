@@ -4,6 +4,7 @@ import (
 	"github.com/riyanathariq/taskify-api/internal/config"
 	"github.com/riyanathariq/taskify-api/internal/repository"
 	"github.com/riyanathariq/taskify-api/pkg/gorm"
+	"log"
 )
 
 type Options func(*Dependency)
@@ -16,7 +17,12 @@ func WithConfig() Options {
 
 func WithGormDB() Options {
 	return func(d *Dependency) {
-		_, _ = gorm.InitGormDB(d.Config)
+		gormDB, err := gorm.InitGormDB(d.Config)
+		if err != nil {
+			log.Fatalf("failed to init gorm db: %v", err)
+		}
+
+		d.GormDB = gormDB
 	}
 }
 
