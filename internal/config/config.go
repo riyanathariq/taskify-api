@@ -10,9 +10,10 @@ import (
 
 type (
 	Config struct {
-		AppName  string   `env:"APP_NAME"`
-		AppPort  string   `env:"APP_PORT"`
-		Database Database `envPrefix:"DB_"`
+		AppName      string   `env:"APP_NAME"`
+		AppPort      string   `env:"APP_PORT"`
+		JWTSecretKey string   `env:"JWT_SECRET_KEY"`
+		Database     Database `envPrefix:"DB_"`
 	}
 
 	Database struct {
