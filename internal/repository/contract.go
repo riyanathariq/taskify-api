@@ -1,10 +1,16 @@
 package repository
 
-import "gorm.io/gorm"
+import (
+	"github.com/riyanathariq/taskify-api/internal/repository/user_repo"
+	"gorm.io/gorm"
+)
 
 type Repositories struct {
+	User user_repo.UserRepository
 }
 
 func InitRepos(db *gorm.DB) *Repositories {
-	return &Repositories{}
+	return &Repositories{
+		User: user_repo.NewUserRepository(db),
+	}
 }

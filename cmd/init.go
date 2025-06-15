@@ -24,8 +24,8 @@ func Start() {
 	switch os.Args[1] {
 	case "api":
 		server.Start()
-	case "migrate":
-		database.Migrate()
+	case "db:migrate":
+		database.DatabaseMigration(dependencies.New().Config)
 	default:
 		fmt.Printf("Unknown command: %s\n", os.Args[1])
 	}
